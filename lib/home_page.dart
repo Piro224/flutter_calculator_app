@@ -17,11 +17,11 @@ class _HomePageState extends State<HomePage> {
     "DEL",
     "C",
     "%",
-    "/",
+    "÷",
     "7",
     "8",
     "9",
-    "*",
+    "x",
     "4",
     "5",
     "6",
@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   bool isOperator(String x) {
-    if (x == "+" || x == "-" || x == "*" || x == "/" || x == "%" || x == "=") {
+    if (x == "+" || x == "-" || x == "x" || x == "÷" || x == "%" || x == "=") {
       return true;
     }
     return false;
@@ -51,6 +51,9 @@ class _HomePageState extends State<HomePage> {
 
   void equalPressed() {
     String finalInput = input;
+
+    finalInput = finalInput.replaceAll("÷", "/");
+    finalInput = finalInput.replaceAll("x", "*");
 
     Parser p = Parser();
     Expression exp = p.parse(finalInput);
@@ -77,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.all(12),
                     child: Text(
-                      input,
+                      input ,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
