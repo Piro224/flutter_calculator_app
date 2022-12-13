@@ -11,6 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var input = "";
+ 
   var output = "";
 
   final List<String> buttons = [
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             flex: 4,
             child: Container(
-              decoration: const BoxDecoration(),
+              padding: const EdgeInsets.all(8.0),
               child: GridView.builder(
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: buttons.length,
@@ -128,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                         }
                         return setState(() {
                           input = input.substring(0, input.length - 1);
-                          
+                          equalPressed();
                         });
                       },
                       buttonText: buttons[index],
@@ -156,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                       buttonTapped: () {
                         setState(() {
                           equalPressed();
-                          // input = "";
+                          input = "";
                         });
                       },
                       buttonText: buttons[index],
@@ -181,7 +182,8 @@ class _HomePageState extends State<HomePage> {
                       buttonBorder: Border.all(color: Colors.amber, width: 2),
                       buttonTapped: () {
                         setState(() {
-                          input += buttons[index].trim();
+                          input += buttons[index];
+                          equalPressed();
                         });
                       },
                       Color: isOperator(buttons[index])
