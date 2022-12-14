@@ -11,7 +11,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   var input = "";
- 
+
   var output = "";
 
   final List<String> buttons = [
@@ -62,7 +62,7 @@ class _HomePageState extends State<HomePage> {
 
     double eval = exp.evaluate(EvaluationType.REAL, cm);
 
-    output = eval.toString();
+    output = eval.toString().trim();
   }
 
   @override
@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
                     alignment: Alignment.centerRight,
                     padding: const EdgeInsets.all(12),
                     child: Text(
-                      input ,
+                      input,
                       style: const TextStyle(
                         color: Colors.white,
                         fontSize: 20,
@@ -182,7 +182,7 @@ class _HomePageState extends State<HomePage> {
                       buttonBorder: Border.all(color: Colors.amber, width: 2),
                       buttonTapped: () {
                         setState(() {
-                          input += buttons[index];
+                          input += buttons[index].trim();
                           equalPressed();
                         });
                       },
