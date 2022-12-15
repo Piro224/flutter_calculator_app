@@ -129,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                         }
                         return setState(() {
                           input = input.substring(0, input.length - 1);
-                          equalPressed();
+                          // equalPressed();
                         });
                       },
                       buttonText: buttons[index],
@@ -183,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                       buttonTapped: () {
                         setState(() {
                           input += buttons[index].trim();
-                          equalPressed();
+                          // equalPressed();
                         });
                       },
                       Color: isOperator(buttons[index])
