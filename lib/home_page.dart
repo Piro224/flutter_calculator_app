@@ -53,6 +53,12 @@ class _HomePageState extends State<HomePage> {
   void equalPressed() {
     String finalInput = input;
 
+    // output = double.parse(finalInput).toString();
+
+    
+
+   
+
     finalInput = finalInput.replaceAll("÷", "/");
     finalInput = finalInput.replaceAll("x", "*");
 
@@ -73,7 +79,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           Expanded(
             child: Container(
-              color: Colors.transparent,
+              color: Colors.white,
               child: Column(
                 children: [
                   const SizedBox(height: 20),
@@ -83,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       input,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -96,7 +102,7 @@ class _HomePageState extends State<HomePage> {
                     child: Text(
                       output,
                       style: const TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
