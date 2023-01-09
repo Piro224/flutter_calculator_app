@@ -13,6 +13,8 @@ class _HomePageState extends State<HomePage> {
   var input = "";
 
   var output = "";
+  var firstNum, secondNum;
+  var operator;
 
   final List<String> buttons = [
     "DEL",
@@ -22,7 +24,7 @@ class _HomePageState extends State<HomePage> {
     "7",
     "8",
     "9",
-    "x",
+    "×",
     "4",
     "5",
     "6",
@@ -38,10 +40,68 @@ class _HomePageState extends State<HomePage> {
   ];
 
   bool isOperator(String x) {
-    if (x == "+" || x == "-" || x == "x" || x == "÷" || x == "%" || x == "=") {
+    if (x == "+" || x == "-" || x == "×" || x == "÷" || x == "%" || x == "=") {
       return true;
     }
     return false;
+  }
+
+  void btnAdd() {
+    // firstNum = double.parse(output);
+    // operator = '+';
+    if (!input.contains('+')) {
+      input += '+';
+    } else {
+      input = input;
+    }
+  }
+
+  void btnSub() {
+    // firstNum = double.parse(output);
+    // operator = '-';
+    if (!input.contains('-')) {
+      input += '-';
+    } else {
+      input = input;
+    }
+  }
+
+  void btnDivide() {
+    // firstNum = double.parse(output);
+    // operator = '÷';
+    if (!input.contains('÷')) {
+      input += '+';
+    } else {
+      input = input;
+    }
+  }
+
+  void btnMult() {
+    // firstNum = double.parse(output);
+    // operator = '*';
+    if (!input.contains('×')) {
+      input += '×';
+    } else {
+      input = input;
+    }
+  }
+
+  void btnPercent() {
+    // firstNum = double.parse(output);
+    // operator = '%';
+    if (!input.contains('/100 x ')) {
+      input += '/100 x ';
+    } else {
+      input = input;
+    }
+  }
+
+  void btnDeci() {
+    if (!input.contains('.')) {
+      input += '.';
+    } else {
+      input = input;
+    }
   }
 
   void plusOrMinus() {
@@ -52,22 +112,38 @@ class _HomePageState extends State<HomePage> {
 
   void equalPressed() {
     String finalInput = input;
+    // secondNum = double.parse(output);
 
-    // output = double.parse(finalInput).toString();
+    // switch (operator) {
+    //   case "+":
+    //     output = (firstNum + secondNum).toString();
+    //     input = input.toString();
+    //     break;
+    //   case "-":
+    //     output = (firstNum - secondNum).toString();
+    //     input = input.toString();
 
-    
-
-   
+    //     break;
+    //   case "×":
+    //     output = (firstNum * secondNum).toString();
+    //     break;
+    //   case "÷":
+    //     output = (firstNum / secondNum).toString();
+    //     break;
+    //   case "%":
+    //     output = (firstNum * 1 / 100 * secondNum).toString();
+    //     break;
+    //   default:
+    //     break;
+    // }
 
     finalInput = finalInput.replaceAll("÷", "/");
-    finalInput = finalInput.replaceAll("x", "*");
+    finalInput = finalInput.replaceAll("×", "*");
 
     Parser p = Parser();
     Expression exp = p.parse(finalInput);
     ContextModel cm = ContextModel();
-
     double eval = exp.evaluate(EvaluationType.REAL, cm);
-
     output = eval.toString().trim();
   }
 
@@ -143,6 +219,7 @@ class _HomePageState extends State<HomePage> {
                       Color: Colors.black,
                       textColor: Colors.red,
                     );
+
                     //clear button
                   } else if (index == 1) {
                     return MyButton(
@@ -157,13 +234,14 @@ class _HomePageState extends State<HomePage> {
                       Color: Colors.black,
                       textColor: Colors.green,
                     );
+
                     //Equals button
                   } else if (index == 19) {
                     return MyButton(
                       buttonTapped: () {
                         setState(() {
                           equalPressed();
-                          input = "";
+                          // input = "";
                         });
                       },
                       buttonText: buttons[index],
@@ -182,6 +260,114 @@ class _HomePageState extends State<HomePage> {
                       textColor: Colors.amber,
                       buttonBorder: Border.all(color: Colors.amber, width: 2),
                     );
+
+                    //btnAdd
+                  } else if (index == 15) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          btnAdd();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      Color: isOperator(buttons[index])
+                          ? Colors.amber
+                          : Colors.black,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.amber,
+                      buttonBorder: Border.all(color: Colors.amber, width: 2),
+                    );
+
+                    //btnSub
+                  } else if (index == 11) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          btnSub();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      Color: isOperator(buttons[index])
+                          ? Colors.amber
+                          : Colors.black,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.amber,
+                      buttonBorder: Border.all(color: Colors.amber, width: 2),
+                    );
+
+                    //btnDivide
+                  } else if (index == 3) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          btnDivide();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      Color: isOperator(buttons[index])
+                          ? Colors.amber
+                          : Colors.black,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.amber,
+                      buttonBorder: Border.all(color: Colors.amber, width: 2),
+                    );
+
+                    //btnMultiply
+                  } else if (index == 7) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          btnMult();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      Color: isOperator(buttons[index])
+                          ? Colors.amber
+                          : Colors.black,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.amber,
+                      buttonBorder: Border.all(color: Colors.amber, width: 2),
+                    );
+
+                    //btnPercent
+                  } else if (index == 2) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          btnPercent();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      Color: isOperator(buttons[index])
+                          ? Colors.amber
+                          : Colors.black,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.amber,
+                      buttonBorder: Border.all(color: Colors.amber, width: 2),
+                    );
+
+                    //btn Decimal
+                  } else if (index == 18) {
+                    return MyButton(
+                      buttonTapped: () {
+                        setState(() {
+                          btnDeci();
+                        });
+                      },
+                      buttonText: buttons[index],
+                      buttonBorder: Border.all(color: Colors.amber, width: 2),
+                      Color: isOperator(buttons[index])
+                          ? Colors.amber
+                          : Colors.black,
+                      textColor: isOperator(buttons[index])
+                          ? Colors.black
+                          : Colors.amber,
+                    );
                   } else {
                     return MyButton(
                       buttonText: buttons[index],
@@ -189,7 +375,6 @@ class _HomePageState extends State<HomePage> {
                       buttonTapped: () {
                         setState(() {
                           input += buttons[index].trim();
-                          // equalPressed();
                         });
                       },
                       Color: isOperator(buttons[index])
